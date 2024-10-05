@@ -34,7 +34,7 @@ cd product-listing-app
 1. Navigate to the Laravel backend folder (if applicable):
 
    ```bash
-   cd backend
+   cd tg-product-list
    ```
 
 2. Install the Laravel dependencies:
