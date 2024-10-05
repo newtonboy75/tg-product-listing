@@ -19,14 +19,12 @@ const useProductList = (page: number, searchTerm: string, limit: number) => {
 
             if (fetchedProducts.length < limit) {
                 setHasMore(false);
-            }else{
+            } else {
                 setHasMore(true);
             }
 
             if (page === 1) {
-                
                 setProducts(fetchedProducts);
-                
             } else {
                 setProducts((prevProducts) => [
                     ...prevProducts,

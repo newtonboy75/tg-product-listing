@@ -31,7 +31,7 @@ cd product-listing-app
 
 ### Backend Setup (Laravel)
 
-1. Navigate to the Laravel backend folder (if applicable):
+1. Navigate to the Laravel backend folder:
 
    ```bash
    cd tg-product-list
@@ -55,15 +55,7 @@ cd product-listing-app
    php artisan key:generate
    ```
 
-5. Set up your database configuration in the `.env` file.
-
-6. Run the database migrations (if applicable):
-
-   ```bash
-   php artisan migrate
-   ```
-
-7. Start the Laravel development server:
+5. Start the Laravel development server:
 
    ```bash
    php artisan serve
@@ -98,5 +90,4 @@ cd product-listing-app
 ## Usage
 
 - Open your web browser and navigate to [http://localhost:5173/](http://localhost:5173/) to view the app. (Use http://localhost:4173/ if you want to see the build/preview version)
-- Use the dropdown to select different product categories to filter the listings.
-- The app will fetch products dynamically based on the selected category without reloading the page.
+- The app will fetch products dynamically based on the text typed in the search input without reloading the page.

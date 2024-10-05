@@ -36,6 +36,20 @@ class ProductController extends Controller
         }
     }
 
+    public function getProductById(Request $request, $productId)
+    {
+        $url = "https://dummyjson.com/products/{$productId}";
+        Log::info($url);
+
+        try {
+            $product = $this->productService->fetchApi($url);
+            Log::info($product);
+            return response()->json($product, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function getCategories(Request $request)
     {
         $url = 'https://dummyjson.com/products/categories/{$limit}';

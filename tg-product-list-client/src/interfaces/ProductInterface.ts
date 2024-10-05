@@ -5,8 +5,17 @@ export interface Product {
     description: string;
     price: string;
     category: string;
-  }
+    brand: string;
+    images: string[];
+    reviews: any[];
+    rating: number;
+}
 
-  export interface ProductCardProps {
+export interface ProductCardProps {
     product: Product;
-  }
+}
+
+export interface StarRatingProps {
+    rating: number;
+    totalStars?: number;
+}

@@ -40,7 +40,7 @@ const Header = () => {
                             <li className="mb-6 hidden max-lg:block">
                                 <a href="javascript:void(0)">
                                     <img
-                                        src="https://readymadeui.com/readymadeui.svg"
+                                        src="#"
                                         alt="logo"
                                         className="w-36"
                                     />
@@ -79,7 +79,6 @@ const Header = () => {
                                     Contact
                                 </a>
                             </li>
-                
                         </ul>
                     </div>
 

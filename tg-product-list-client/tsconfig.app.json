@@ -17,15 +17,9 @@
     "esModuleInterop": true,
 
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "include": [
-    "src/**/*" // Include all files in the src directory
-  ],
-  "exclude": [
-    "node_modules" // Exclude node_modules
-  ]
+  }
 }

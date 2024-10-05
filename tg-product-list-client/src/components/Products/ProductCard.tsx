@@ -1,11 +1,31 @@
-import { FC } from "react";
-import heart from "../../../public/heart.svg";
+import { FC, lazy, SetStateAction, Suspense, useState } from "react";
+import heart from "/heart.svg";
 import { ProductCardProps } from "../../interfaces/ProductInterface";
 
+const SingleProductPopup = lazy(() => import("./ProductSinglePopup"));
+
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [itemId, setItemId] = useState(0);
+
+    // Open the popup
+    const handleOpenPopup = (id: SetStateAction<number>) => {
+        console.log(id);
+        setItemId(id);
+        setIsPopupOpen(true);
+    };
+
+    // Close the popup
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+    };
+
     return (
         <>
-            <div className="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative text-left">
+            <div
+                onClick={() => handleOpenPopup(product.id)}
+                className="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative text-left"
+            >
                 <div className="bg-gray-100 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer absolute top-4 right-4">
                     <img src={heart} />
                 </div>
@@ -30,6 +50,18 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                     </h4>
                 </div>
             </div>
+
+            {isPopupOpen && (
+                <Suspense fallback={<div>Loading popup...</div>}>
+                    <div className="popup-overlay absolute">
+                        <SingleProductPopup
+                            itemId={itemId}
+                            closePopup={handleClosePopup}
+                        />
+                        <button onClick={handleClosePopup}>Close Popup</button>
+                    </div>
+                </Suspense>
+            )}
         </>
     );
 };
