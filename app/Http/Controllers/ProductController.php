@@ -29,7 +29,6 @@ class ProductController extends Controller
 
         try {
             $products = $this->productService->fetchApi($url);
-            //Log::info($products);
             return response()->json($products, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -43,7 +42,7 @@ class ProductController extends Controller
 
         try {
             $product = $this->productService->fetchApi($url);
-            Log::info($product);
+            
             return response()->json($product, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

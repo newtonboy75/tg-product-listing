@@ -10,9 +10,6 @@ export const useSingleProductItem = (productId: number) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                // const response = await axios.get(`http://localhost:8000/api/v1/products/${productId}`);
-                // setProduct(response.data);
-
                 const response = await axiosInterceptor.get(
                     `/product/${productId}`
                 );
