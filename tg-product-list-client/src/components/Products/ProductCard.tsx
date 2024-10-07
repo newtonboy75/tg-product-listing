@@ -1,6 +1,7 @@
 import { FC, lazy, SetStateAction, Suspense, useState } from "react";
 import heart from "/heart.svg";
 import { ProductCardProps } from "../../interfaces/ProductInterface";
+import Loading from "./Loading";
 
 const SingleProductPopup = lazy(() => import("./ProductSinglePopup"));
 
@@ -52,13 +53,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
             </div>
 
             {isPopupOpen && (
-                <Suspense fallback={<div>Loading popup...</div>}>
+                <Suspense fallback={<Loading />}>
                     <div className="popup-overlay absolute">
                         <SingleProductPopup
                             itemId={itemId}
                             closePopup={handleClosePopup}
                         />
-                        <button onClick={handleClosePopup}>Close Popup</button>
                     </div>
                 </Suspense>
             )}

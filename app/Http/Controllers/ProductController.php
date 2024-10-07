@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function getProductById(Request $request, $productId)
     {
         $url = "https://dummyjson.com/products/{$productId}";
-        Log::info($url);
+        //Log::info($url);
 
         try {
             $product = $this->productService->fetchApi($url);
@@ -68,7 +68,7 @@ class ProductController extends Controller
         $limit = $request->query('limit', 0); // Default to 10 products per page
         $searchTerm = $request->query('search', '');
 
-        Log::info($product);
+        //Log::info($product);
 
         $url = "https://dummyjson.com/products/category/{$productCategory}?limit={$limit}&skip=" . ($page - 1) * $limit . "&select=id,title,description,category,price,thumbnail";
         try {

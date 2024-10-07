@@ -1,23 +1,25 @@
-import { useEffect } from "react";
 import { useSingleProductItem } from "../../hooks/useSingleProductItem";
 import close from "/close.svg";
 import review from "/review.svg";
 import ProductRatings from "./ProductRatings";
+import Loading from "./Loading";
 
 const ProductSinglePopup = ({ itemId, closePopup }) => {
     const { product, loading, error } = useSingleProductItem(itemId);
 
-    useEffect(() => {
-        console.log(product);
-    }, [[product]]);
-
     return (
         <>
+            {loading && (
+                <div className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full overflow-auto font-[sans-serif]">
+                    <Loading />
+                </div>
+            )}
             <div
                 onClick={closePopup}
-                className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]"
+                className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.1)] overflow-auto font-[sans-serif]"
             >
-                {error && (<div>{error}</div>)}
+                {error && <div>{error}</div>}
+
                 {!loading && (
                     <div className="w-full max-w-screen-md bg-white shadow-lg rounded-lg p-6 relative">
                         <div className="flex items-center pb-3  border-gray-300">

@@ -53,7 +53,14 @@ const ProductList: FC = () => {
                         className="absolute right-0 inset-y-0 flex items-center p-4"
                         onClick={handleClear}
                     >
-                        <img src={reset} title="Reset" className="w-4 h-4" />
+                        {inputSearchRef.current &&
+                            inputSearchRef.current.value !== "" && (
+                                <img
+                                    src={reset}
+                                    title="Reset"
+                                    className="w-4 h-4"
+                                />
+                            )}
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:px-28">
