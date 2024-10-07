@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -20,33 +21,35 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-
         $page = $request->query('page', 1); // Page 1 default
         $limit = $request->query('limit', 12); // Default to 12 products per page
-        $searchTerm = $request->query('search', ''); //Search term
-
-        $url = "https://dummyjson.com/products/search?q={$searchTerm}&limit={$limit}&skip=" . ($page - 1) * $limit . "&select=id,title,description,category,price,thumbnail&sortBy=id&order=desc";
-
-        try {
-            $products = $this->productService->fetchApi($url);
-            return response()->json($products, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        $searchTerm = $request->query('search', ''); // Search term
+    
+        // Start caching results
+        $cacheDuration = 7 * 60; // Cache results for 7 mins
+        $cacheKey = "products.search.{$searchTerm}.page.{$page}.limit.{$limit}";
+    
+        // Cache product
+        $products = Cache::remember($cacheKey, $cacheDuration, function () use ($searchTerm, $limit, $page) {
+            $url = "https://dummyjson.com/products/search?q={$searchTerm}&limit={$limit}&skip=" . ($page - 1) * $limit . "&select=id,title,description,category,price,thumbnail&sortBy=id&order=desc";
+            return $this->productService->fetchApi($url);
+        });
+    
+        return response()->json($products, 200);
     }
 
     public function getProductById(Request $request, $productId)
     {
-        $url = "https://dummyjson.com/products/{$productId}";
-        //Log::info($url);
+        //Cache single result
+        $cacheKey = "product.{$productId}";
+        $cacheDuration = 5 * 60;
 
-        try {
-            $product = $this->productService->fetchApi($url);
-            
-            return response()->json($product, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        $product = Cache::remember($cacheKey, $cacheDuration, function () use ($productId) {
+            $url = "https://dummyjson.com/products/{$productId}";
+            return $this->productService->fetchApi($url);
+        });
+
+        return response()->json($product, 200);
     }
 
     public function getCategories(Request $request)
@@ -61,6 +64,7 @@ class ProductController extends Controller
         }
     }
 
+    //to be implemented
     public function getProductsByCategory(Request $request, $product)
     {
         $productCategory = $product;
