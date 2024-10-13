@@ -11,7 +11,6 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
     // Open the popup
     const handleOpenPopup = (id: SetStateAction<number>) => {
-        console.log(id);
         setItemId(id);
         setIsPopupOpen(true);
     };
@@ -28,7 +27,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                 className="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative text-left"
             >
                 <div className="bg-gray-100 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer absolute top-4 right-4">
-                    <img src={heart} />
+                    <img src={heart} width={'20px'} height={'20px'} alt="Like" />
                 </div>
 
                 <div className="w-5/6 h-[210px] overflow-hidden mx-auto aspect-w-16 aspect-h-8 md:mb-2 mb-4">
@@ -36,6 +35,9 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                         src={product.thumbnail}
                         alt="Product 1"
                         className="h-full w-full object-contain"
+                        loading="lazy"
+                        width="300" // Set the actual width
+                        height="200" // Set the actual height
                     />
                 </div>
 

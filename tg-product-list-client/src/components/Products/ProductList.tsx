@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useRef, useState, useMemo } from "react";
 import ProductCard from "./ProductCard";
 import useProductList from "../../hooks/useProductList";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -37,6 +37,13 @@ const ProductList: FC = () => {
         }
     };
 
+    // Memoize the product cards to prevent unnecessary re-renders
+    const productCards = useMemo(() => {
+        return products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+        ));
+    }, [products]);
+
     return (
         <>
             <div className="container mx-auto px-10 lg:px-24 lg:py-10 p-4 text-center">
@@ -64,9 +71,7 @@ const ProductList: FC = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:px-28">
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+                    {productCards} {/* Render memoized product cards */}
                 </div>
 
                 {loading && <Loading />}

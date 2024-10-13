@@ -96,7 +96,7 @@ const ProductSinglePopup = ({ itemId, closePopup }) => {
                             </div>
                         </div>
 
-                        <div className="border-t border-gray-300 pt-6 flex justify-end gap-4">
+                        <div className="pt-6 flex justify-end gap-4">
                             <button
                                 onClick={closePopup}
                                 type="button"
