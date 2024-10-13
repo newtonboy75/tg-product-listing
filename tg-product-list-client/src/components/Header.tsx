@@ -12,8 +12,8 @@ const Header = () => {
                 <div className="flex flex-wrap items-center max-lg:gap-y-6 max-sm:gap-x-4">
                     <div className="text-center font-semibold text-[#e06a93]">
                         <a href="#">
-                            <img src={logo} width={'50'} height={'50'} alt="Travel Gay Shop" />
-                            SHOP
+                            <img src={logo} width={'50px'} height={'35px'} alt="Travel Gay Shop" />
+                            <span className="text-sm">SHOP</span>
                         </a>
                     </div>
 
@@ -25,19 +25,19 @@ const Header = () => {
                             id="toggleClose"
                             className="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white p-3"
                         >
-                            <img src={menu_toggle} width={'10px'} height={'10px'} alt="toggle" />
+                            <img src={menu_toggle} width={'32px'} height={'32px'} alt="toggle" />
                         </button>
 
                         <ul className="lg:flex lg:gap-x-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:px-10 max-lg:py-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
                             <li className="mb-6 hidden max-lg:block">
                                 <a href="#">
-                                    <img src="#" className="w-36" alt="TG Shop logo" />
+                                    <img src="#" width={'32'} height={'32'} alt="TG Shop logo" />
                                 </a>
                             </li>
                             <li className="max-lg:border-b max-lg:py-3">
                                 <a
                                     href="#"
-                                    className="hover:text-[#e06a93] text-[15px] text-[#e06a93] block font-bold"
+                                    className="hover:text-[rgb(198,86,125)] text-[15px] text-[rgb(187,69,111)] block font-bold"
                                 >
                                     Products
                                 </a>

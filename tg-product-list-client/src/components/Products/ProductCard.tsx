@@ -35,13 +35,13 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                         src={product.thumbnail}
                         alt="Product 1"
                         className="h-full w-full object-contain"
-                        loading="lazy"
+                        loading="eager"
                         width="300" // Set the actual width
                         height="200" // Set the actual height
                     />
                 </div>
 
-                <div>
+                <>
                     <h3 className="text-md font-bold text-[#e06a93]">
                         {product.title}
                     </h3>
@@ -51,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                     <h4 className="text-md text-[#e06a93] font-medium mt-4">
                         ${product.price}
                     </h4>
-                </div>
+                </>
             </div>
 
             {isPopupOpen && (
